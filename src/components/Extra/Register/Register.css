@@ -1,0 +1,47 @@
+.full,
+.register,
+.log {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  height: auto;
+  width: 450px;
+  border-radius: 50px;
+  border: 1px solid black;
+}
+
+.log {
+  height: auto;
+  width: 450px;
+  margin-top: 10px;
+  border-radius: 50px;
+  border: 1px solid black;
+}
+
+.mailTTag,
+.passTTag,
+.nameTag {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.log > button,
+.register > button {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}

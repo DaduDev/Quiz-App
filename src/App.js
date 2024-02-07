@@ -3,6 +3,8 @@ import Home from "./Home";
 import Recent from "./components/Extra/Recent/Recent";
 import Create from "./components/Extra/Create/Create";
 import Featured from "./components/Extra/Featured/Featured";
+import Register from "./components/Extra/Register/Register";
+import SignIn from "./components/Extra/SignIn/SignIn";
 
 function App() {
   return (
@@ -12,6 +14,9 @@ function App() {
         <Route path="/recent" element={<Recent />} />
         <Route path="/create" element={<Create />} />
         <Route path="/featured" element={<Featured />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   );

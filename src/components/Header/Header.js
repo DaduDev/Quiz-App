@@ -11,6 +11,9 @@ const Header = () => {
   const handleHome = () => {
     navigate("/");
   };
+  const handleSingIn = () => {
+    navigate("/signin");
+  };
   return (
     <div className="header">
       <div className="left">
@@ -29,7 +32,9 @@ const Header = () => {
           Create a Quiz
         </button>
 
-        <button className="signin">Sign In</button>
+        <button onClick={handleSingIn} className="signin">
+          Sign In
+        </button>
       </div>
     </div>
   );
