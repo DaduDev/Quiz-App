@@ -1,0 +1,61 @@
+.block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  bottom: auto;
+  overflow: hidden;
+}
+
+.all {
+  margin: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+  transition: transform 100ms ease-in;
+}
+
+.all:hover {
+  transform: scale(1.07);
+}
+
+img {
+  height: 300px;
+  width: 450px;
+  border-radius: 10px;
+}
+
+.block_right {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.block_right p {
+  margin: 0;
+  padding: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  padding-top: 80px;
+}
+
+.button_left {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  color: whitesmoke;
+  border: none;
+  background-color: rgb(124, 124, 206);
+}
+
+.button_right {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  color: whitesmoke;
+  background-color: rgb(102, 185, 110);
+}

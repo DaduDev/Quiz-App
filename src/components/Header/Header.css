@@ -1,0 +1,59 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid grey;
+}
+
+.middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 51px;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding-left: 10px;
+}
+
+.inputTag {
+  border-radius: 51px;
+  border: none;
+  background-color: #f2f2f2;
+  width: 400px;
+  height: 40px;
+  text-align: center;
+  outline: none;
+}
+
+.search {
+  padding: 15px;
+}
+
+.create,
+.signin {
+  padding: 10px;
+  background-color: #4d6160;
+  outline: none;
+  border: none;
+  margin-right: 10px;
+  color: aliceblue;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+h2 {
+  cursor: pointer;
+}
