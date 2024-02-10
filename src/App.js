@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Recent from "./components/Extra/Recent/Recent";
-import Create from "./components/Extra/Create/Create";
 import Featured from "./components/Extra/Featured/Featured";
 import Register from "./components/Extra/Register/Register";
 import SignIn from "./components/Extra/SignIn/SignIn";
@@ -12,7 +11,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recent" element={<Recent />} />
-        <Route path="/create" element={<Create />} />
         <Route path="/featured" element={<Featured />} />
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<SignIn />} />

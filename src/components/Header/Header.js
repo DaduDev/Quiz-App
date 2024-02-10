@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-  const handleCreate = () => {
-    navigate("/create");
+  const handleSignUp = () => {
+    navigate("/register");
   };
   const handleHome = () => {
     navigate("/");
@@ -28,8 +28,8 @@ const Header = () => {
         <SearchIcon className="search" />
       </div>
       <div className="left">
-        <button onClick={handleCreate} className="create">
-          Create a Quiz
+        <button onClick={handleSignUp} className="create">
+          Sign Up
         </button>
 
         <button onClick={handleSingIn} className="signin">
