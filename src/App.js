@@ -4,6 +4,7 @@ import Recent from "./components/Extra/Recent/Recent";
 import Featured from "./components/Extra/Featured/Featured";
 import Register from "./components/Extra/Register/Register";
 import SignIn from "./components/Extra/SignIn/SignIn";
+import ReadMore from "./components/Extra/ReadMore/ReadMore";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="/quiz-${}" element={<ReadMore />} />
       </Routes>
     </BrowserRouter>
   );
