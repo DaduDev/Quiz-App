@@ -12,7 +12,7 @@
 }
 
 .card > img {
-  object-fit: fill;
+  object-fit: cover;
   min-width: 300px;
   min-height: 200px;
   width: 100%;
@@ -37,4 +37,8 @@
   font-weight: 300;
   margin-top: 8px;
   margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }

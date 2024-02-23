@@ -16,7 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<h1>Not Found</h1>} />
-        <Route path="/quiz-${}" element={<ReadMore />} />
+        <Route path="/quiz/:quizId" element={<ReadMore />} />
       </Routes>
     </BrowserRouter>
   );
