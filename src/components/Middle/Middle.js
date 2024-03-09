@@ -28,6 +28,7 @@ const Middle = () => {
                 src={quiz.Image}
                 title={quiz.Title}
                 description={quiz.Description}
+                id={quiz.id}
               />
             </div>
           ))}
@@ -45,6 +46,7 @@ const Middle = () => {
                 src={quiz.Image}
                 title={quiz.Title}
                 description={quiz.Description}
+                id={quiz.id}
               />
             </div>
           ))}

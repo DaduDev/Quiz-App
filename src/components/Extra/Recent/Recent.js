@@ -22,6 +22,7 @@ const Recent = () => {
             src={quiz.Image}
             title={quiz.Title}
             description={quiz.Description}
+            id={quiz.id}
           />
         </div>
       ))}

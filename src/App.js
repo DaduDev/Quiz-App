@@ -17,6 +17,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/quiz/:quizId" element={<ReadMore />} />
+        <Route path="/quiz/:quizId/play" element={<ReadMore />} />
       </Routes>
     </BrowserRouter>
   );

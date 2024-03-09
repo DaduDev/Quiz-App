@@ -1,42 +1,76 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../Header/Header";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Card from "../Card/Card";
 import Footer from "../../Footer/Footer";
 import "./ReadMore.css";
-// import { fetchAllQuizzes } from "../../fetchQuiz";
-
+import { fetchAllQuizzes } from "../../../fetchQuiz";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase";
 const ReadMore = () => {
-  // const [quizzes, setQuizzes] = useState([]);
+  const { quizId } = useParams();
+  const [quizzes, setQuizzes] = useState([]);
+  const [quizData, setQuizData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchQuizzes = async () => {
-  //     const data = await fetchAllQuizzes(); // Or fetchPaginatedQuizzes
-  //     setQuizzes(data);
-  //   };
-  //   fetchQuizzes();
-  // }, []);
+  useEffect(() => {
+    const fetchQuizzes = async () => {
+      const data = await fetchAllQuizzes();
+      setQuizzes(data);
+    };
+    fetchQuizzes();
+  }, []);
+
+  useEffect(() => {
+    const fetchQuizDetails = async () => {
+      setIsLoading(true);
+
+      try {
+        const docRef = collection(db, "quizzes");
+        const docSnap = await getDocs(docRef);
+
+        if (docSnap.exists) {
+          setQuizData(
+            docSnap.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching quiz details:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchQuizDetails();
+  }, [quizId]);
   return (
     <div>
       <Header />
-      <div className="container">
-        <div className="left">
-          <img className="quizImg" src="" alt="quizImg" />
-        </div>
-        <div className="middleR">
-          <h1>Title of Quiz</h1>
-          <span>By Author</span>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip
-          </p>
-          <div>
-            <button className="button_right">Play Now</button>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="container">
+          <div className="left">
+            <img className="quizImg" src="" alt="quizImg" />
+          </div>
+          <div className="middleR">
+            <h1>{quizData.Title}</h1>
+            <span>{quizData.Author}</span>
+            <p className="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip
+            </p>
+            <div>
+              <button className="button_right">Play Now</button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
       <div className="more">
         <div className="recent">
           <div className="view">
@@ -45,21 +79,16 @@ const ReadMore = () => {
           </div>
 
           <div className="cards">
-            <Card
-              src="https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg?im_w=720"
-              title="Online Experiences"
-              description="Unique activities we can do together, led by a world of hosts."
-            />
-            <Card
-              src="https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg?im_w=720"
-              title="Online Experiences"
-              description="Unique activities we can do together, led by a world of hosts."
-            />
-            <Card
-              src="https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg?im_w=720"
-              title="Online Experiences"
-              description="Unique activities we can do together, led by a world of hosts."
-            />
+            {quizzes.map((quiz) => (
+              <div key={quiz.id}>
+                <Card
+                  src={quiz.Image}
+                  title={quiz.Title}
+                  description={quiz.Description}
+                  id={quiz.id}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
