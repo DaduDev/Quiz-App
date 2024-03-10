@@ -5,12 +5,13 @@ import Card from "../Card/Card";
 import Footer from "../../Footer/Footer";
 import "./ReadMore.css";
 import { fetchAllQuizzes } from "../../../fetchQuiz";
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
+
 const ReadMore = () => {
   const { quizId } = useParams();
   const [quizzes, setQuizzes] = useState([]);
-  const [quizData, setQuizData] = useState([]);
+  const [quizData, setQuizData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -26,13 +27,12 @@ const ReadMore = () => {
       setIsLoading(true);
 
       try {
-        const docRef = collection(db, "quizzes");
-        const docSnap = await getDocs(docRef);
+        const docRef = doc(db, "quizzes", quizId);
+        const docSnap = await getDoc(docRef);
 
         if (docSnap.exists) {
-          setQuizData(
-            docSnap.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-          );
+          // const quizData = { ...docSnap.data(), id: docSnap.id };
+          setQuizData(docSnap);
         } else {
           console.log("No such document!");
         }
@@ -49,7 +49,7 @@ const ReadMore = () => {
     <div>
       <Header />
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="circular-loader"></div>
       ) : (
         <div className="container">
           <div className="left">
@@ -58,12 +58,7 @@ const ReadMore = () => {
           <div className="middleR">
             <h1>{quizData.Title}</h1>
             <span>{quizData.Author}</span>
-            <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip
-            </p>
+            <p className="description">{quizData.Description}</p>
             <div>
               <button className="button_right">Play Now</button>
             </div>

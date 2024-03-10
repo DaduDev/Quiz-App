@@ -20,7 +20,13 @@ function Block({ src, title, description, id }) {
           <h1>{title}</h1>
           <p>{description}</p>
           <div className="buttons">
-            <button className="button_right" onClick={() => handleReadMore(id)}>
+            <button
+              style={{
+                backgroundColor: "#9370DB",
+              }}
+              className="button_right"
+              onClick={() => handleReadMore(id)}
+            >
               Read More
             </button>
             <button className="button_right" onClick={() => handlePlay(id)}>

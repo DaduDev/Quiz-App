@@ -11,9 +11,10 @@ const Middle = () => {
     const fetchQuizzes = async () => {
       const data = await fetchAllQuizzes(); // Or fetchPaginatedQuizzes
       setQuizzes(data);
+      console.log(quizzes);
     };
     fetchQuizzes();
-  }, []);
+  }, [quizzes]);
   return (
     <div className="home">
       <div className="recent">
