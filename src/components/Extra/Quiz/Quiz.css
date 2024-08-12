@@ -1,0 +1,64 @@
+.circular-loader {
+    display: flex; /* Change to 'flex' */
+    width: 100px; /* Increase size */
+    height: 100px; /* Increase size */
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top-color: #3498db; /* Animation color */
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+    margin: 0 auto; /* Center horizontally */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .quiz-container {
+    padding: 10px;
+    
+  }
+
+  .question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .answer {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quizBtn1{
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      outline-offset: none;
+      border: none;
+  }
+
+  .quizHead{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .quizBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  span{
+    padding: 10px;
+  }

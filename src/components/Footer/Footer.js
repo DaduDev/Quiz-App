@@ -7,7 +7,6 @@ import { Button } from "@mui/material";
 
 const Footer = () => {
   return (
-    <div>
       <footer className="footer">
         <div className="container">
           <span className="text-muted">@2024 QuizApp</span>
@@ -24,7 +23,6 @@ const Footer = () => {
           </Button>
         </div>
       </footer>
-    </div>
   );
 };
 

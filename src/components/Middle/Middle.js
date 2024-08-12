@@ -9,9 +9,8 @@ const Middle = () => {
 
   useEffect(() => {
     const fetchQuizzes = async () => {
-      const data = await fetchAllQuizzes(); // Or fetchPaginatedQuizzes
+      const data = await fetchAllQuizzes();
       setQuizzes(data);
-      console.log(quizzes);
     };
     fetchQuizzes();
   }, [quizzes]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../Header/Header";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Card from "../Card/Card";
 import Footer from "../../Footer/Footer";
 import "./ReadMore.css";
@@ -9,6 +9,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 const ReadMore = () => {
+
+  const navigate = useNavigate();
+
   const { quizId } = useParams();
   const [quizzes, setQuizzes] = useState([]);
   const [quizData, setQuizData] = useState({});
@@ -25,26 +28,27 @@ const ReadMore = () => {
   useEffect(() => {
     const fetchQuizDetails = async () => {
       setIsLoading(true);
-
       try {
-        const docRef = doc(db, "quizzes", quizId);
+        const docRef = doc(db, 'quizzes', quizId);
         const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists) {
-          // const quizData = { ...docSnap.data(), id: docSnap.id };
-          setQuizData(docSnap);
-        } else {
-          console.log("No such document!");
-        }
-      } catch (error) {
-        console.error("Error fetching quiz details:", error);
-      } finally {
+      if (docSnap.exists()) {
+        setQuizData(docSnap.data());
+      } else {
+        console.error('Quiz not found');
+      }
+      }
+       finally {
         setIsLoading(false);
       }
     };
 
     fetchQuizDetails();
   }, [quizId]);
+
+  const handlePlay = () => {
+    navigate(`/quiz/${quizId}/play`)
+  }
   return (
     <div>
       <Header />
@@ -53,14 +57,14 @@ const ReadMore = () => {
       ) : (
         <div className="container">
           <div className="left">
-            <img className="quizImg" src="" alt="quizImg" />
+            <img className="quizImg" src={quizData.Image} alt="quizImg" />
           </div>
           <div className="middleR">
             <h1>{quizData.Title}</h1>
             <span>{quizData.Author}</span>
             <p className="description">{quizData.Description}</p>
             <div>
-              <button className="button_right">Play Now</button>
+              <button onClick={handlePlay} className="button_right">Play Now</button>
             </div>
           </div>
         </div>
