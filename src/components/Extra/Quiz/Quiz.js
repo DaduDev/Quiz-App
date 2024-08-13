@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
 import "./Quiz.css";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from "../../../firebase";
 
@@ -10,8 +10,9 @@ const Quiz = () => {
     const { quizId } = useParams();
     const [quiz, setQuiz] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [score, setScore] = useState(0);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
       const fetchQuiz = async () => {
@@ -34,27 +35,24 @@ const Quiz = () => {
 
     const handleNext = () => {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        if(currentQuestionIndex < quiz.Questions.length - 1) {
-          setSelectedAnswer(null);
-        } else {
-          // Build the Result Page
-          
-        }
         const radios = document.querySelectorAll('input[type="radio"]');
         radios.forEach(radio => radio.checked = false);
     };
 
     const handlePrevious = () => {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      const radios = document.querySelectorAll('input[type="radio"]');
-      radios.forEach(radio => radio.checked = false);
+      
     };
 
     const handleOptionSelect = (index) => {
-      setSelectedAnswer(index);
-      if(selectedAnswer === quiz.Questions[currentQuestionIndex].Answer) {
+      if(index === quiz.Questions[currentQuestionIndex].Answer) {
         setScore(score + 1);
+        console.log(score)
       }
+    }
+
+    const handleResult = () => {
+      navigate(`/quiz/${quizId}/results`, {state: {score}});
     }
 
   return (
@@ -76,7 +74,9 @@ const Quiz = () => {
                       type="radio"
                       name="option"
                       value={index}
-                      onChange={() => {handleOptionSelect(index)}}
+                      onChange={() => {
+                        handleOptionSelect(index)
+                      }}
                     />
                     <span>{Option}</span>
                   </div>
@@ -88,10 +88,15 @@ const Quiz = () => {
                 backgroundColor: "#e483f7",
                 width: "75px",
               }} onClick={handlePrevious}>Previous</button>
-              <button className="quizBtn1" style={{
-                backgroundColor: "#97f7b1",
-                width: "75px",
-              }} onClick={handleNext}>Next</button>
+              <>{
+                currentQuestionIndex < quiz.Questions.length-1 ? (<button className="quizBtn1" style={{
+                  backgroundColor: "#97f7b1",
+                  width: "75px",
+                }} onClick={handleNext}>next</button>) : (<button className="quizBtn1" style={{
+                  backgroundColor: "#97f7b1",
+                  width: "75px",
+                }} onClick={handleResult}>submit</button>)
+              }</>
             </div>
             
           </div>

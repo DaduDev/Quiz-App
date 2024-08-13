@@ -4,7 +4,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 
+
 const Header = () => {
+
   const auth = getAuth();
 
   const user = auth.currentUser;
@@ -39,6 +41,7 @@ const Header = () => {
         <input
           className="inputTag"
           type="text"
+          
           placeholder="Search for a new quiz"
         />
         <SearchIcon className="search" />

@@ -9,7 +9,11 @@ const Footer = () => {
   return (
       <footer className="footer">
         <div className="container">
-          <span className="text-muted">@2024 QuizApp</span>
+            <div className="gitSource" onClick={() => window.location.href = 'https://github.com/DaduDev/Quiz-App'}>
+            <GitHubIcon />
+            <span>Source Code</span>
+          </div>
+          
         </div>
         <div className="socials">
           <Button className="twitter" href="/">

@@ -4,11 +4,24 @@
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #e0e0e0;
-  bottom: 0px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1; /* Optional: Add your desired background color */
+  text-align: center; /* Optional: Center the text */
+  padding: 10px 0;
 }
 
 .socials {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.gitSource {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

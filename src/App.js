@@ -6,6 +6,7 @@ import Register from "./components/Extra/Register/Register";
 import SignIn from "./components/Extra/SignIn/SignIn";
 import ReadMore from "./components/Extra/ReadMore/ReadMore";
 import Quiz from "./components/Extra/Quiz/Quiz";
+import ResultCard from "./components/Extra/ResultCard/ResultCard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/quiz/:quizId" element={<ReadMore />} />
         <Route path="/quiz/:quizId/play" element={<Quiz />} />
+        <Route path="/quiz/:quizId/results" element={<ResultCard />} />
       </Routes>
     </BrowserRouter>
   );
